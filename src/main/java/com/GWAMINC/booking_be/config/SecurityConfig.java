@@ -14,11 +14,20 @@ public class SecurityConfig {
             .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
                     .requestMatchers("/api/region/create").permitAll()
+
                     .requestMatchers("/api/placetype/create").permitAll()
                     .requestMatchers("/api/placetype/getAll").permitAll()
                     .requestMatchers("/api/placetype/getById/{id}").permitAll()
                     .requestMatchers("/api/placetype/deleteById/{id}").permitAll()
                     .requestMatchers("/api/placetype/updateById/{id}").permitAll()
+
+                    .requestMatchers("/api/country/create").permitAll()
+                    .requestMatchers("/api/country/getAll").permitAll()
+                    .requestMatchers("/api/country/getById/{id}").permitAll()
+                    .requestMatchers("/api/country/deleteById/{id}").permitAll()
+                    .requestMatchers("/api/country/updateById/{id}").permitAll()
+
+
                     .anyRequest().authenticated()
             )
             .csrf(AbstractHttpConfigurer::disable);
