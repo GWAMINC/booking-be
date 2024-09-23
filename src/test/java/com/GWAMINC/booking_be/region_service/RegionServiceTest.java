@@ -1,4 +1,4 @@
-package com.GWAMINC.booking_be.service;
+package com.GWAMINC.booking_be.region_service;
 
 import com.GWAMINC.booking_be.dto.RegionDto;
 import com.GWAMINC.booking_be.entity.Region;
@@ -27,17 +27,15 @@ public class RegionServiceTest {
     @Test
     void createRegionSuccessfully() {
         RegionDto mockRegionDto = new RegionDto();
-
         Region mockRegion = RegionMapper.mapToEntity(mockRegionDto);
 
         when(regionRepository.save(any(Region.class))).thenReturn(mockRegion);
 
-        Region result = regionRepository.save(mockRegion);
-
-        RegionDto resultDto = RegionMapper.mapToDto(result);
+        RegionDto resultDto = regionService.createRegion(mockRegionDto);
 
         assertThat(resultDto.getName()).isEqualTo(mockRegionDto.getName());
 
         verify(regionRepository).save(any(Region.class));
     }
+
 }
