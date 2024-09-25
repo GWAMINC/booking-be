@@ -27,6 +27,15 @@ public class SecurityConfig {
                     .requestMatchers("/api/country/deleteById/{id}").permitAll()
                     .requestMatchers("/api/country/updateById/{id}").permitAll()
 
+                    .requestMatchers("/api/attribute/create").permitAll()
+                    .requestMatchers("/api/attribute/getById/{id}").permitAll()
+                    .requestMatchers("/api/attribute/delete/{id}").permitAll()
+                    .requestMatchers("/api/attribute/update/{id}").permitAll()
+
+                    .requestMatchers("/api/attributeCategory/create").permitAll()
+                    .requestMatchers("/api/attributeCategory/getById/{id}").permitAll()
+                    .requestMatchers("/api/attributeCategory/delete/{id}").permitAll()
+                    .requestMatchers("/api/attributeCategory/update/{id}").permitAll()
 
                     .anyRequest().authenticated()
             )

@@ -35,6 +35,7 @@ public class CountryServiceImpl implements CountryService{
     @Override
     public CountryDto getCountryById(Long id){
         Country country = countryRepository.findById(id).orElse(null);
+        if (country == null) return null;
         return CountryMapper.mapToDto(country);
     }
 
