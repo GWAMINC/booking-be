@@ -37,6 +37,7 @@ public class PlaceTypeServiceImpl implements PlaceTypeService {
     @Override
     public PlaceTypeDto getPlaceTypeById(Long id) {
         PlaceType placeType = placeTypeRepository.findById(id).orElse(null);
+        if (placeType == null) return null;
         return PlaceTypeMapper.mapToDto(placeType);
     }
 
