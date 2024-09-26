@@ -17,32 +17,8 @@ public class Property {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "nightly_price")
-    private float nightly_price;
-
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "address")
-    private String address;
-
-    @Column(name = "num_guests")
-    private int num_guests;
-
-    @Column(name = "num_bedrooms")
-    private int num_bedrooms;
-
-    @Column(name = "num_beds")
-    private int num_beds;
-
-    @Column(name = "num_baths")
-    private int num_baths;
-
-    @Column(name = "is_guest_favorite")
-    private boolean is_guest_favorite;
+    @Column(name = "property_name")
+    private String propertyName;
 
     @ManyToOne
     @JoinColumn(name = "location_id")
@@ -55,4 +31,35 @@ public class Property {
     @ManyToOne
     @JoinColumn(name = "property_type_id")
     private PropertyType propertyType;
+
+    @Column(name = "nightly_price")
+    private Double nightlyPrice;
+
+    @Column(name = "num_guests")
+    private Integer numGuests;
+
+    @Column(name = "num_beds")
+    private Integer numBeds;
+
+    @Column(name = "num_bedrooms")
+    private Integer numBedrooms;
+
+    @Column(name = "num_bathrooms")
+    private Integer numBathrooms;
+
+    @Column(name = "is_guest_favourite")
+    private Boolean isGuestFavourite;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "address_line_1")
+    private String addressLine1;
+
+    @Column(name = "address_line_2")
+    private String addressLine2;
+
+    @ManyToOne
+    @JoinColumn(name = "host_id")
+    private UserAccount host;
 }
