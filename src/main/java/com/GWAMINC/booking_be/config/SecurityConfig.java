@@ -15,17 +15,23 @@ public class SecurityConfig {
                 authorizeRequests
                     .requestMatchers("/api/region/create").permitAll()
 
-                    .requestMatchers("/api/placetype/create").permitAll()
-                    .requestMatchers("/api/placetype/getAll").permitAll()
-                    .requestMatchers("/api/placetype/getById/{id}").permitAll()
-                    .requestMatchers("/api/placetype/deleteById/{id}").permitAll()
-                    .requestMatchers("/api/placetype/updateById/{id}").permitAll()
+                    .requestMatchers("/api/placeType/create").permitAll()
+                    .requestMatchers("/api/placeType/getAll").permitAll()
+                    .requestMatchers("/api/placeType/getById/{id}").permitAll()
+                    .requestMatchers("/api/placeType/deleteById/{id}").permitAll()
+                    .requestMatchers("/api/placeType/updateById/{id}").permitAll()
 
                     .requestMatchers("/api/country/create").permitAll()
                     .requestMatchers("/api/country/getAll").permitAll()
                     .requestMatchers("/api/country/getById/{id}").permitAll()
                     .requestMatchers("/api/country/deleteById/{id}").permitAll()
                     .requestMatchers("/api/country/updateById/{id}").permitAll()
+
+                    .requestMatchers("/api/category/create").permitAll()
+                    .requestMatchers("/api/category/getAll").permitAll()
+                    .requestMatchers("/api/category/getById/{id}").permitAll()
+                    .requestMatchers("/api/category/deleteById/{id}").permitAll()
+                    .requestMatchers("/api/category/updateById/{id}").permitAll()
 
                     .requestMatchers("/api/attribute/create").permitAll()
                     .requestMatchers("/api/attribute/getById/{id}").permitAll()

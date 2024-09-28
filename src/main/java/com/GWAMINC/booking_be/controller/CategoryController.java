@@ -1,8 +1,8 @@
 package com.GWAMINC.booking_be.controller;
 
-import com.GWAMINC.booking_be.dto.PlaceTypeDto;
+import com.GWAMINC.booking_be.dto.CategoryDto;
 import com.GWAMINC.booking_be.dto.ResponseMessageDto;
-import com.GWAMINC.booking_be.service.PlaceTypeService;
+import com.GWAMINC.booking_be.service.CategoryService;
 
 import lombok.AllArgsConstructor;
 
@@ -19,15 +19,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-@RequestMapping("/api/placeType")
+@RequestMapping("/api/category")
 @AllArgsConstructor
-public class PlaceTypeController {
-    private PlaceTypeService placeTypeService;
+public class CategoryController {
+    private CategoryService categoryService;
 
     @PostMapping("/create")
-    public ResponseEntity<ResponseMessageDto> createPlaceType(@RequestBody PlaceTypeDto placeTypeDto) {
+    public ResponseEntity<ResponseMessageDto> createCategory(@RequestBody CategoryDto categoryDto) {
         try {
-            PlaceTypeDto savedPlaceType = placeTypeService.createPlaceType(placeTypeDto);
+            CategoryDto savedCategory = categoryService.createCategory(categoryDto);
             ResponseMessageDto response = new ResponseMessageDto("Create place type success", true);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -37,24 +37,23 @@ public class PlaceTypeController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<PlaceTypeDto>> getAllPlaceTypes() {
+    public ResponseEntity<List<CategoryDto>> getAllCategorys() {
         try {
-            List<PlaceTypeDto> placeTypeDtos = placeTypeService.getAllPlaceTypes();
-            return new ResponseEntity<>(placeTypeDtos, HttpStatus.OK);
+            List<CategoryDto> categoryDtos = categoryService.getAllCategorys();
+            return new ResponseEntity<>(categoryDtos, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<PlaceTypeDto> getPlaceTypeById(@PathVariable Long id) {
+    public ResponseEntity<CategoryDto> getCategoryById(@PathVariable Long id) {
         try {
-            PlaceTypeDto placeType = placeTypeService.getPlaceTypeById(id);
-            
-            if (placeType != null)
-                return new ResponseEntity<>(placeType, HttpStatus.FOUND);
-            else 
+            CategoryDto category = categoryService.getCategoryById(id);
+
+            if (category != null)
+                return new ResponseEntity<>(category, HttpStatus.FOUND);
+            else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -62,10 +61,10 @@ public class PlaceTypeController {
     }
 
     @DeleteMapping("/deleteById/{id}")
-    public ResponseEntity<ResponseMessageDto> deletePlaceTypeById(@PathVariable Long id) {
+    public ResponseEntity<ResponseMessageDto> deleteCategoryById(@PathVariable Long id) {
         try {
-            placeTypeService.deletePlaceTypeById(id);
-            ResponseMessageDto response = new ResponseMessageDto("Delete placeType succesfully", true);
+            categoryService.deleteCategoryById(id);
+            ResponseMessageDto response = new ResponseMessageDto("Delete category succesfully", true);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             ResponseMessageDto response = new ResponseMessageDto("Delete place type failed: " + e.getMessage(), false);
@@ -74,9 +73,10 @@ public class PlaceTypeController {
     }
 
     @PostMapping("/updateById/{id}")
-    public ResponseEntity<ResponseMessageDto> updateById(@PathVariable Long id, @RequestBody PlaceTypeDto placeTypeDto) {
+    public ResponseEntity<ResponseMessageDto> updateById(@PathVariable Long id,
+            @RequestBody CategoryDto categoryDto) {
         try {
-            placeTypeService.updatePlaceTypeById(id, placeTypeDto);
+            categoryService.updateCategoryById(id, categoryDto);
             ResponseMessageDto response = new ResponseMessageDto("Update place type successfully", true);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
