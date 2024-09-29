@@ -26,7 +26,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryDto> getAllCategorys() {
+    public List<CategoryDto> getAllCategories() {
         return categoryRepository.findAll()
                 .stream()
                 .map(category -> CategoryMapper.mapToDto(category))
@@ -37,7 +37,8 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryDto getCategoryById(Long id) {
         Category category = categoryRepository.findById(id).orElse(null);
-        if (category == null) return null;
+        if (category == null)
+            return null;
         return CategoryMapper.mapToDto(category);
     }
 

@@ -37,9 +37,9 @@ public class CategoryController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<CategoryDto>> getAllCategorys() {
+    public ResponseEntity<List<CategoryDto>> getAllCategories() {
         try {
-            List<CategoryDto> categoryDtos = categoryService.getAllCategorys();
+            List<CategoryDto> categoryDtos = categoryService.getAllCategories();
             return new ResponseEntity<>(categoryDtos, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
