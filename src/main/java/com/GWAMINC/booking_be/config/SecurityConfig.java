@@ -13,7 +13,11 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
-                    .requestMatchers("/api/region/create").permitAll()
+                        .requestMatchers("/api/region/create").permitAll()
+                        .requestMatchers("/api/region/getAll").permitAll()
+                        .requestMatchers("/api/region/getById/{id}").permitAll()
+                        .requestMatchers("/api/region/deleteById/{id}").permitAll()
+                        .requestMatchers("/api/region/updateById/{id}").permitAll()
 
                     .requestMatchers("/api/placetype/create").permitAll()
                     .requestMatchers("/api/placetype/getAll").permitAll()
