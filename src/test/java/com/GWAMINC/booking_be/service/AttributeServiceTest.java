@@ -3,10 +3,9 @@ package com.GWAMINC.booking_be.service;
 import com.GWAMINC.booking_be.dto.AttributeCategoryDto;
 import com.GWAMINC.booking_be.dto.AttributeDto;
 import com.GWAMINC.booking_be.entity.Attribute;
-import com.GWAMINC.booking_be.entity.AttributeCategory;
 import com.GWAMINC.booking_be.mapper.AttributeMapper;
 import com.GWAMINC.booking_be.repository.AttributeRepository;
-import com.GWAMINC.booking_be.service.impl.AttributeServiceImpl;
+import com.GWAMINC.booking_be.service.impl.PropertyAttributeServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -23,7 +22,7 @@ public class AttributeServiceTest {
     AttributeRepository attributeRepository;
 
     @InjectMocks
-    AttributeServiceImpl attributeService;
+    PropertyAttributeServiceImpl attributeService;
 
     private AttributeDto mockAttributeDto()
     {
