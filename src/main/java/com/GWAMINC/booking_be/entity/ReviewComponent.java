@@ -1,10 +1,7 @@
 package com.GWAMINC.booking_be.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
@@ -12,6 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "review_component")
+@Builder
 public class ReviewComponent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
