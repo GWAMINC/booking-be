@@ -46,7 +46,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api/property-attribute/category/getById/{id}").permitAll()
                                 .requestMatchers("/api/property-attribute/category/delete/{id}").permitAll()
                                 .requestMatchers("/api/property-attribute/category/update/{id}").permitAll()
-                                
+
                                 .requestMatchers("/api/booking/create").permitAll()
                                 .requestMatchers("/api/booking/getAll").permitAll()
                                 .requestMatchers("/api/booking/getById/{id}").permitAll()

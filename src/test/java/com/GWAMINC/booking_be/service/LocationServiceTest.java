@@ -4,6 +4,7 @@ import com.GWAMINC.booking_be.dto.CountryDto;
 import com.GWAMINC.booking_be.dto.LocationDto;
 import com.GWAMINC.booking_be.entity.Country;
 import com.GWAMINC.booking_be.entity.Location;
+import com.GWAMINC.booking_be.entity.Region;
 import com.GWAMINC.booking_be.mapper.CountryMapper;
 import com.GWAMINC.booking_be.mapper.LocationMapper;
 import com.GWAMINC.booking_be.repository.LocationRepository;
@@ -36,11 +37,13 @@ public class LocationServiceTest {
     private LocationDto locationDto;
     private Country country;
     private CountryDto countryDto;
+    private Region region; // Thêm biến region
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        country = new Country(1L, "Country Name", null);
+        region = new Region(1L, "Region Name"); // Khởi tạo region
+        country = new Country(1L, "Country Name", region); // Thêm region vào country
         countryDto = CountryMapper.mapToDto(country);
         location = new Location(1L, "Location Name", country);
         locationDto = LocationMapper.mapToDto(location);
