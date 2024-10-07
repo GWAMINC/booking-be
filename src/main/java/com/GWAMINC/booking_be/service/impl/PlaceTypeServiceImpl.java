@@ -31,13 +31,13 @@ public class PlaceTypeServiceImpl implements PlaceTypeService {
                 .stream()
                 .map(placeType -> PlaceTypeMapper.mapToDto(placeType))
                 .collect(Collectors.toList());
-        
     }
 
     @Override
     public PlaceTypeDto getPlaceTypeById(Long id) {
         PlaceType placeType = placeTypeRepository.findById(id).orElse(null);
-        if (placeType == null) return null;
+        if (placeType == null)
+            return null;
         return PlaceTypeMapper.mapToDto(placeType);
     }
 
@@ -48,11 +48,13 @@ public class PlaceTypeServiceImpl implements PlaceTypeService {
 
     @Override
     public void updatePlaceTypeById(Long id, PlaceTypeDto placeTypeDto) {
-        PlaceType oldPlaceType = placeTypeRepository.findById(id)
-                                                    .orElseThrow(() -> new EntityNotFoundException("Place type with id [%d] not found".formatted(id)));
-        
+        PlaceType oldPlaceType = placeTypeRepository
+                .findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("PlaceType with id [%d] not found".formatted(id)));
+
         PlaceType newPlaceType = PlaceTypeMapper.mapToEntity(placeTypeDto);
         newPlaceType.setId(oldPlaceType.getId());
+
         placeTypeRepository.save(newPlaceType);
     }
 }

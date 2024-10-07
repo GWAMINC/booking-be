@@ -9,6 +9,7 @@ public class LocationMapper {
     }
 
     public static Location mapToEntity(LocationDto locationDto) {
-        return new Location(locationDto.getId(), locationDto.getName(), CountryMapper.mapToEntity(locationDto.getCountry()));
+        return new Location(locationDto.getId(), locationDto.getName(),
+                CountryMapper.mapToEntity(locationDto.getCountry()));
     }
 }

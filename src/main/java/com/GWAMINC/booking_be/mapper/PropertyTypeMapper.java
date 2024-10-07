@@ -7,6 +7,7 @@ public class PropertyTypeMapper {
     public static PropertyTypeDto mapToDto(PropertyType propertyType) {
         return new PropertyTypeDto(propertyType.getId(), propertyType.getTypeName());
     }
+
     public static PropertyType mapToEntity(PropertyTypeDto propertyTypeDto) {
         return new PropertyType(propertyTypeDto.getId(), propertyTypeDto.getTypeName());
     }

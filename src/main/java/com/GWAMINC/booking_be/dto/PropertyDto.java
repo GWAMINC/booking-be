@@ -1,6 +1,5 @@
 package com.GWAMINC.booking_be.dto;
 
-import com.GWAMINC.booking_be.entity.UserAccount;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,5 +24,5 @@ public class PropertyDto {
     private String description;
     private String addressLine1;
     private String addressLine2;
-    private UserAccount host;
+    private UserAccountDto host;
 }
