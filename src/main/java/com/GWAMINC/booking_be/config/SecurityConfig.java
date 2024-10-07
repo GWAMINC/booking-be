@@ -61,6 +61,17 @@ public class SecurityConfig {
                         .requestMatchers("/api/property-attribute/category/delete/{id}").permitAll()
                         .requestMatchers("/api/property-attribute/category/update/{id}").permitAll()
 
+                        .requestMatchers("api/property/create").permitAll()
+                        .requestMatchers("/api/property/getById/{id}").permitAll()
+                        .requestMatchers("/api/property/updateById/{id}").permitAll()
+                        .requestMatchers("/api/property/deleteById/{id}").permitAll()
+                        .requestMatchers("api/property/getAll").permitAll()
+
+                        .requestMatchers("api/propertytype/create").permitAll()
+                        .requestMatchers("/api/propertytype/getById/{id}").permitAll()
+                        .requestMatchers("/api/propertytype/updateById/{id}").permitAll()
+                        .requestMatchers("/api/propertytype/deleteById/{id}").permitAll()
+                        .requestMatchers("api/propertytype/getAll").permitAll()
                     .anyRequest().authenticated()
             )
             .csrf(AbstractHttpConfigurer::disable);
