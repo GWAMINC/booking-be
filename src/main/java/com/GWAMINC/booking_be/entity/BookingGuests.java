@@ -18,13 +18,13 @@ public class BookingGuests {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "booking_id")
+    @JoinColumn(name = "booking_id", nullable = false)
     private Booking booking;
 
     @ManyToOne
-    @JoinColumn(name = "guest_type_id")
+    @JoinColumn(name = "guest_type_id", nullable = false)
     private GuestType guestType;
 
-    @Column(name = "num_guests")
+    @Column(name = "num_guests", nullable = false)
     private Integer numGuests;
 }

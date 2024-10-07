@@ -13,6 +13,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+
             .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
                         .requestMatchers("/api/region/create").permitAll()
@@ -93,3 +94,4 @@ public class SecurityConfig {
         };
     }
 }
+
