@@ -18,9 +18,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-
 @RestController
-@RequestMapping("/api/placetype")
+@RequestMapping("/api/place-type")
 @AllArgsConstructor
 public class PlaceTypeController {
     private PlaceTypeService placeTypeService;
@@ -46,16 +45,15 @@ public class PlaceTypeController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    
 
     @GetMapping("/getById/{id}")
     public ResponseEntity<PlaceTypeDto> getPlaceTypeById(@PathVariable Long id) {
         try {
             PlaceTypeDto placeType = placeTypeService.getPlaceTypeById(id);
-            
+
             if (placeType != null)
                 return new ResponseEntity<>(placeType, HttpStatus.FOUND);
-            else 
+            else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -66,7 +64,7 @@ public class PlaceTypeController {
     public ResponseEntity<ResponseMessageDto> deletePlaceTypeById(@PathVariable Long id) {
         try {
             placeTypeService.deletePlaceTypeById(id);
-            ResponseMessageDto response = new ResponseMessageDto("Delete placeType succesfully", true);
+            ResponseMessageDto response = new ResponseMessageDto("Delete placeType successfully", true);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             ResponseMessageDto response = new ResponseMessageDto("Delete place type failed: " + e.getMessage(), false);
@@ -75,10 +73,11 @@ public class PlaceTypeController {
     }
 
     @PostMapping("/updateById/{id}")
-    public ResponseEntity<ResponseMessageDto> updateById(@PathVariable Long id, @RequestBody PlaceTypeDto placeTypeDto) {
+    public ResponseEntity<ResponseMessageDto> updateById(@PathVariable Long id,
+            @RequestBody PlaceTypeDto placeTypeDto) {
         try {
             placeTypeService.updatePlaceTypeById(id, placeTypeDto);
-            ResponseMessageDto response = new ResponseMessageDto("Update place type successfully", true);
+            ResponseMessageDto response = new ResponseMessageDto("Update placeType successfully", true);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
             ResponseMessageDto response = new ResponseMessageDto("Update place type failed: " + e.getMessage(), false);

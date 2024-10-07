@@ -20,8 +20,7 @@ public class PropertyMapper {
                 property.getDescription(),
                 property.getAddressLine1(),
                 property.getAddressLine2(),
-                property.getHost()
-        );
+                UserAccountMapper.mapToDto(property.getHost()));
     }
 
     public static Property mapToEntity(PropertyDto propertyDto) {
@@ -40,7 +39,6 @@ public class PropertyMapper {
                 propertyDto.getDescription(),
                 propertyDto.getAddressLine1(),
                 propertyDto.getAddressLine2(),
-                propertyDto.getHost()
-        );
+                UserAccountMapper.mapToEntity(propertyDto.getHost()));
     }
 }
