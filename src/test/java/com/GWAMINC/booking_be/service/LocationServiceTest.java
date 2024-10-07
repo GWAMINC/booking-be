@@ -52,8 +52,8 @@ public class LocationServiceTest {
 
         LocationDto savedLocation = locationService.createLocation(locationDto);
 
-        assertNotNull(savedLocation);
-        assertEquals(locationDto.getName(), savedLocation.getName());
+        assertNotNull(savedLocation, "Saved location should not be null");
+        assertEquals(locationDto.getName(), savedLocation.getName(), "Location name should match");
         verify(locationRepository).save(any(Location.class));
     }
 
@@ -64,9 +64,9 @@ public class LocationServiceTest {
 
         List<LocationDto> locationDtoList = locationService.getAllLocations();
 
-        assertNotNull(locationDtoList);
-        assertEquals(1, locationDtoList.size());
-        assertEquals(location.getName(), locationDtoList.get(0).getName());
+        assertNotNull(locationDtoList, "Location DTO list should not be null");
+        assertEquals(1, locationDtoList.size(), "Location DTO list size should be 1");
+        assertEquals(location.getName(), locationDtoList.get(0).getName(), "Location name should match");
         verify(locationRepository).findAll();
     }
 
@@ -77,8 +77,8 @@ public class LocationServiceTest {
 
         LocationDto foundLocation = locationService.getLocationById(id);
 
-        assertNotNull(foundLocation);
-        assertEquals(location.getName(), foundLocation.getName());
+        assertNotNull(foundLocation, "Found location should not be null");
+        assertEquals(location.getName(), foundLocation.getName(), "Location name should match");
         verify(locationRepository).findById(id);
     }
 
@@ -89,7 +89,7 @@ public class LocationServiceTest {
 
         LocationDto foundLocation = locationService.getLocationById(id);
 
-        assertNull(foundLocation);
+        assertNull(foundLocation, "Found location should be null");
         verify(locationRepository).findById(id);
     }
 
@@ -110,8 +110,8 @@ public class LocationServiceTest {
 
         LocationDto updatedLocation = locationService.updateLocationById(locationDto.getId(), locationDto);
 
-        assertNotNull(updatedLocation);
-        assertEquals(locationDto.getName(), updatedLocation.getName());
+        assertNotNull(updatedLocation, "Updated location should not be null");
+        assertEquals(locationDto.getName(), updatedLocation.getName(), "Location name should match");
         verify(locationRepository).findById(locationDto.getId());
         verify(locationRepository).save(any(Location.class));
     }
@@ -120,11 +120,11 @@ public class LocationServiceTest {
     void updateLocationNotFound() {
         when(locationRepository.findById(locationDto.getId())).thenReturn(Optional.empty());
 
-        Exception exception = assertThrows(EntityNotFoundException.class, () -> {
+        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> {
             locationService.updateLocationById(locationDto.getId(), locationDto);
         });
 
-        assertEquals("Location with id [%d] not found".formatted(locationDto.getId()), exception.getMessage());
+        assertEquals("Location with id [%d] not found".formatted(locationDto.getId()), exception.getMessage(), "Exception message should match");
         verify(locationRepository).findById(locationDto.getId());
     }
 }
