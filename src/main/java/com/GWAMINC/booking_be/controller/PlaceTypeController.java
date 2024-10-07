@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-@RequestMapping("/api/placeType")
+@RequestMapping("/api/place-type")
 @AllArgsConstructor
 public class PlaceTypeController {
     private PlaceTypeService placeTypeService;
@@ -64,7 +64,7 @@ public class PlaceTypeController {
     public ResponseEntity<ResponseMessageDto> deletePlaceTypeById(@PathVariable Long id) {
         try {
             placeTypeService.deletePlaceTypeById(id);
-            ResponseMessageDto response = new ResponseMessageDto("Delete placeType succesfully", true);
+            ResponseMessageDto response = new ResponseMessageDto("Delete placeType successfully", true);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             ResponseMessageDto response = new ResponseMessageDto("Delete place type failed: " + e.getMessage(), false);

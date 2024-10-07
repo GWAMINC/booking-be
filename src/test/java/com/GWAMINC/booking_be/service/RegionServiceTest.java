@@ -1,4 +1,4 @@
-package com.GWAMINC.booking_be.region_service;
+package com.GWAMINC.booking_be.service;
 
 import com.GWAMINC.booking_be.dto.RegionDto;
 import com.GWAMINC.booking_be.entity.Region;

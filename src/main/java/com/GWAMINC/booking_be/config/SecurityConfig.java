@@ -15,17 +15,23 @@ public class SecurityConfig {
                 authorizeRequests
                     .requestMatchers("/api/region/create").permitAll()
 
-                    .requestMatchers("/api/placeType/create").permitAll()
-                    .requestMatchers("/api/placeType/getAll").permitAll()
-                    .requestMatchers("/api/placeType/getById/{id}").permitAll()
-                    .requestMatchers("/api/placeType/deleteById/{id}").permitAll()
-                    .requestMatchers("/api/placeType/updateById/{id}").permitAll()
+                    .requestMatchers("/api/place-type/create").permitAll()
+                    .requestMatchers("/api/place-type/getAll").permitAll()
+                    .requestMatchers("/api/place-type/getById/{id}").permitAll()
+                    .requestMatchers("/api/place-type/deleteById/{id}").permitAll()
+                    .requestMatchers("/api/place-type/updateById/{id}").permitAll()
 
-                    .requestMatchers("/api/productCategory/create").permitAll()
-                    .requestMatchers("/api/productCategory/getAll").permitAll()
-                    .requestMatchers("/api/productCategory/getById/{id}").permitAll()
-                    .requestMatchers("/api/productCategory/deleteById/{id}").permitAll()
-                    .requestMatchers("/api/productCategory/updateById/{id}").permitAll()
+                    .requestMatchers("/api/product-category/create").permitAll()
+                    .requestMatchers("/api/product-category/getAll").permitAll()
+                    .requestMatchers("/api/product-category/getById/{id}").permitAll()
+                    .requestMatchers("/api/product-category/deleteById/{id}").permitAll()
+                    .requestMatchers("/api/product-category/updateById/{id}").permitAll()
+
+                    .requestMatchers("/api/product-category/category/create").permitAll()
+                    .requestMatchers("/api/product-category/category/getAll").permitAll()
+                    .requestMatchers("/api/product-category/category/getById/{id}").permitAll()
+                    .requestMatchers("/api/product-category/category/deleteById/{id}").permitAll()
+                    .requestMatchers("/api/product-category/category/updateById/{id}").permitAll()
 
                     .requestMatchers("/api/country/create").permitAll()
                     .requestMatchers("/api/country/getAll").permitAll()

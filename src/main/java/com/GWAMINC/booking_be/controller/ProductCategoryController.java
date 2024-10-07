@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.GWAMINC.booking_be.dto.CategoryDto;
 import com.GWAMINC.booking_be.dto.ProductCategoryDto;
 import com.GWAMINC.booking_be.dto.ResponseMessageDto;
 import com.GWAMINC.booking_be.service.ProductCategoryService;
@@ -20,7 +21,7 @@ import com.GWAMINC.booking_be.service.ProductCategoryService;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/api/productCategory")
+@RequestMapping("/api/product-category")
 @AllArgsConstructor
 public class ProductCategoryController {
     private final ProductCategoryService productCategoryService;
@@ -54,7 +55,7 @@ public class ProductCategoryController {
         try {
             ProductCategoryDto productCategory = productCategoryService.getProductCategoryById(id);
 
-            if (productCategory == null)
+            if (productCategory != null)
                 return new ResponseEntity<>(productCategory, HttpStatus.FOUND);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -67,7 +68,7 @@ public class ProductCategoryController {
     public ResponseEntity<ResponseMessageDto> deleteProductCategoryById(@PathVariable Long id) {
         try {
             productCategoryService.deleteProductCategoryById(id);
-            ResponseMessageDto response = new ResponseMessageDto("Delete productCategory succesfully", true);
+            ResponseMessageDto response = new ResponseMessageDto("Delete productCategory successfully", true);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             ResponseMessageDto response = new ResponseMessageDto("Delete productCategory failed: " + e.getMessage(),
@@ -86,6 +87,67 @@ public class ProductCategoryController {
         } catch (Exception e) {
             ResponseMessageDto response = new ResponseMessageDto("Update productCategory failed: " + e.getMessage(),
                     false);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/category/create")
+    public ResponseEntity<ResponseMessageDto> createCategory(@RequestBody CategoryDto categoryDto) {
+        try {
+            CategoryDto savedCategory = productCategoryService.createCategory(categoryDto);
+            ResponseMessageDto response = new ResponseMessageDto("Create place type success", true);
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
+        } catch (Exception e) {
+            ResponseMessageDto response = new ResponseMessageDto("Create place type failed: " + e.getMessage(), false);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/category/getAll")
+    public ResponseEntity<List<CategoryDto>> getAllCategories() {
+        try {
+            List<CategoryDto> categoryDtos = productCategoryService.getAllCategories();
+            return new ResponseEntity<>(categoryDtos, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/category/getById/{id}")
+    public ResponseEntity<CategoryDto> getCategoryById(@PathVariable Long id) {
+        try {
+            CategoryDto category = productCategoryService.getCategoryById(id);
+
+            if (category != null)
+                return new ResponseEntity<>(category, HttpStatus.FOUND);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/category/deleteById/{id}")
+    public ResponseEntity<ResponseMessageDto> deleteCategoryById(@PathVariable Long id) {
+        try {
+            productCategoryService.deleteCategoryById(id);
+            ResponseMessageDto response = new ResponseMessageDto("Delete category successfully", true);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            ResponseMessageDto response = new ResponseMessageDto("Delete place type failed: " + e.getMessage(), false);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/category/updateById/{id}")
+    public ResponseEntity<ResponseMessageDto> updateById(@PathVariable Long id,
+            @RequestBody CategoryDto categoryDto) {
+        try {
+            productCategoryService.updateCategoryById(id, categoryDto);
+            ResponseMessageDto response = new ResponseMessageDto("Update place type successfully", true);
+            return new ResponseEntity<>(response, HttpStatus.CREATED);
+        } catch (Exception e) {
+            ResponseMessageDto response = new ResponseMessageDto("Update place type failed: " + e.getMessage(), false);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
     }
