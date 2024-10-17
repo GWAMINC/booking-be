@@ -19,6 +19,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -76,6 +77,15 @@ public class PropertyAttributeServiceImpl implements PropertyAttributeService {
                 .map(propertyAttribute -> AttributeMapper.mapToDto(propertyAttribute.getAttribute()))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<AttributeDto> getAllAttributes(){
+        return attributeRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparing(Attribute::getId))
+                .map(AttributeMapper::mapToDto)
+                .collect(Collectors.toList());
+    }
     @Override
     public AttributeDto updateAttributeById(Long id, AttributeDto attributeDto){
         Attribute oldAttribute = attributeRepository.findById(id)
@@ -103,7 +113,14 @@ public class PropertyAttributeServiceImpl implements PropertyAttributeService {
         if (attributeCategory == null) return null;
         return AttributeCategoryMapper.mapToDto(attributeCategory);
     }
-
+    @Override
+    public List<AttributeCategoryDto> getAllAttributeCategories(){
+        return attributeCategoryRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparing(AttributeCategory::getId))
+                .map(AttributeCategoryMapper::mapToDto)
+                .collect(Collectors.toList());
+    }
     @Override
     public AttributeCategoryDto updateAttributeCategoryById(Long id, AttributeCategoryDto attributeCategoryDto){
         AttributeCategory oldAttributeCategory = attributeCategoryRepository.findById(id)
