@@ -92,14 +92,13 @@ public class ProductCategoryController {
     }
 
     @PostMapping("/category/create")
-    public ResponseEntity<ResponseMessageDto> createCategory(@RequestBody CategoryDto categoryDto) {
+    public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto) {
         try {
             CategoryDto savedCategory = productCategoryService.createCategory(categoryDto);
-            ResponseMessageDto response = new ResponseMessageDto("Create place type success", true);
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
+            return new ResponseEntity<>(savedCategory, HttpStatus.CREATED);
         } catch (Exception e) {
-            ResponseMessageDto response = new ResponseMessageDto("Create place type failed: " + e.getMessage(), false);
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            System.out.println("Error: " + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -140,15 +139,15 @@ public class ProductCategoryController {
     }
 
     @PostMapping("/category/updateById/{id}")
-    public ResponseEntity<ResponseMessageDto> updateById(@PathVariable Long id,
+    public ResponseEntity<CategoryDto> updateById(@PathVariable Long id,
             @RequestBody CategoryDto categoryDto) {
         try {
             productCategoryService.updateCategoryById(id, categoryDto);
-            ResponseMessageDto response = new ResponseMessageDto("Update place type successfully", true);
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
+            categoryDto.setId(id);
+            return new ResponseEntity<>(categoryDto, HttpStatus.CREATED);
         } catch (Exception e) {
-            ResponseMessageDto response = new ResponseMessageDto("Update place type failed: " + e.getMessage(), false);
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 }
