@@ -54,10 +54,12 @@ public class SecurityConfig {
                         .requestMatchers("/api/property-attribute/attribute/create").permitAll()
                         .requestMatchers("/api/property-attribute/attribute/getAllByPropertyId/{id}").permitAll()
                         .requestMatchers("/api/property-attribute/attribute/getById/{id}").permitAll()
+                        .requestMatchers("/api/property-attribute/attribute/getAll").permitAll()
                         .requestMatchers("/api/property-attribute/attribute/delete/{id}").permitAll()
                         .requestMatchers("/api/property-attribute/attribute/update/{id}").permitAll()
 
                         .requestMatchers("/api/property-attribute/category/create").permitAll()
+                        .requestMatchers("/api/property-attribute/category/getAll").permitAll()
                         .requestMatchers("/api/property-attribute/category/getById/{id}").permitAll()
                         .requestMatchers("/api/property-attribute/category/delete/{id}").permitAll()
                         .requestMatchers("/api/property-attribute/category/update/{id}").permitAll()

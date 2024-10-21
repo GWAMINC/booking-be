@@ -69,14 +69,14 @@ public class PropertyAttributeController {
     }
 
     @PostMapping("/attribute/create")
-    public ResponseEntity<ResponseMessageDto> createAttribute(@RequestBody AttributeDto attributeDto) {
+    public ResponseEntity<AttributeDto> createAttribute(@RequestBody AttributeDto attributeDto) {
         try {
             AttributeDto savedAttribute = propertyAttributeService.createAttribute(attributeDto);
             ResponseMessageDto response = new ResponseMessageDto("Create attribute success", true);
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
+            return new ResponseEntity<>(savedAttribute, HttpStatus.CREATED);
         } catch (Exception e) {
             ResponseMessageDto response = new ResponseMessageDto("Create attribute failed: " + e.getMessage(), false);
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -103,6 +103,15 @@ public class PropertyAttributeController {
         }
     }
 
+    @GetMapping("/attribute/getAll")
+    public ResponseEntity<List<AttributeDto>> getAllAttributes() {
+        try {
+            List<AttributeDto> attributes = propertyAttributeService.getAllAttributes();
+            return new ResponseEntity<>(attributes, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
     @PostMapping("/attribute/update/{id}")
     public ResponseEntity<ResponseMessageDto> updateAttributeById(@PathVariable Long id, @RequestBody AttributeDto attributeDto) {
         try {
@@ -128,14 +137,14 @@ public class PropertyAttributeController {
     }
 
     @PostMapping("/category/create")
-    public ResponseEntity<ResponseMessageDto> createAttributeCategory(@RequestBody AttributeCategoryDto attributeCategoryDto) {
+    public ResponseEntity<AttributeCategoryDto> createAttributeCategory(@RequestBody AttributeCategoryDto attributeCategoryDto) {
         try {
             AttributeCategoryDto savedAttributeCategory = propertyAttributeService.createAttributeCategory(attributeCategoryDto);
             ResponseMessageDto response = new ResponseMessageDto("Create attribute category success", true);
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
+            return new ResponseEntity<>(savedAttributeCategory, HttpStatus.CREATED);
         } catch (Exception e) {
             ResponseMessageDto response = new ResponseMessageDto("Create attribute category failed: " + e.getMessage(), false);
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -151,7 +160,15 @@ public class PropertyAttributeController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
+    @GetMapping("/category/getAll")
+    public ResponseEntity<List<AttributeCategoryDto>> getAllAttributeCategories() {
+        try {
+            List<AttributeCategoryDto> attributeCategories = propertyAttributeService.getAllAttributeCategories();
+            return new ResponseEntity<>(attributeCategories, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
     @PostMapping("/category/update/{id}")
     public ResponseEntity<ResponseMessageDto> updateAttributeCategoryById(@PathVariable Long id, @RequestBody AttributeCategoryDto attributeCategoryDto) {
         try {

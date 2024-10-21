@@ -14,10 +14,12 @@ public interface PropertyAttributeService {
     PropertyAttributeDto updatePropertyAttributeById(Long id, PropertyAttributeDto propertyAttributeDto);
     AttributeDto createAttribute(AttributeDto attributeDto);
     AttributeDto getAttributeById(Long id);
+    List<AttributeDto> getAllAttributes();
     AttributeDto updateAttributeById(Long id, AttributeDto attributeDto);
     void deleteAttributeById(Long id);
     AttributeCategoryDto createAttributeCategory(AttributeCategoryDto attributeCategoryDto);
     AttributeCategoryDto getAttributeCategoryById(Long id);
+    List<AttributeCategoryDto> getAllAttributeCategories();
     AttributeCategoryDto updateAttributeCategoryById(Long id, AttributeCategoryDto attributeCategoryDto);
     void deleteAttributeCategoryById(Long id);
 }
