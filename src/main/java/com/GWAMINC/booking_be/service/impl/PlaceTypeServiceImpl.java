@@ -35,14 +35,19 @@ public class PlaceTypeServiceImpl implements PlaceTypeService {
 
     @Override
     public PlaceTypeDto getPlaceTypeById(Long id) {
-        PlaceType placeType = placeTypeRepository.findById(id).orElse(null);
-        if (placeType == null)
-            return null;
+        PlaceType placeType = placeTypeRepository
+                .findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("PlaceType with id [%d] not found".formatted(id)));
+
         return PlaceTypeMapper.mapToDto(placeType);
     }
 
     @Override
     public void deletePlaceTypeById(Long id) {
+        placeTypeRepository
+                .findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("PlaceType with id [%d] not found".formatted(id)));
+
         placeTypeRepository.deleteById(id);
     };
 
