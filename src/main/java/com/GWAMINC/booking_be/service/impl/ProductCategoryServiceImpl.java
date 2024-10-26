@@ -81,14 +81,17 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Override
     public CategoryDto getCategoryById(Long id) {
-        Category category = categoryRepository.findById(id).orElse(null);
-        if (category == null)
-            return null;
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Category with id [%d] not found".formatted(id)));
+
         return CategoryMapper.mapToDto(category);
     }
 
     @Override
     public void deleteCategoryById(Long id) {
+        categoryRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Category with id [%d] not found".formatted(id)));
+
         categoryRepository.deleteById(id);
     }
 
@@ -99,6 +102,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
         Category newCategory = CategoryMapper.mapToEntity(categoryDto);
         newCategory.setId(oldCategory.getId());
+
         categoryRepository.save(newCategory);
     }
 }

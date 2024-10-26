@@ -92,37 +92,35 @@ public class ProductCategoryController {
     }
 
     @PostMapping("/category/create")
-    public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto) {
+    public ResponseEntity<?> createCategory(@RequestBody CategoryDto categoryDto) {
         try {
             CategoryDto savedCategory = productCategoryService.createCategory(categoryDto);
             return new ResponseEntity<>(savedCategory, HttpStatus.CREATED);
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            ResponseMessageDto res = new ResponseMessageDto(e.getMessage(), false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/category/getAll")
-    public ResponseEntity<List<CategoryDto>> getAllCategories() {
+    public ResponseEntity<?> getAllCategories() {
         try {
             List<CategoryDto> categoryDtos = productCategoryService.getAllCategories();
             return new ResponseEntity<>(categoryDtos, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            ResponseMessageDto res = new ResponseMessageDto(e.getMessage(), false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/category/getById/{id}")
-    public ResponseEntity<CategoryDto> getCategoryById(@PathVariable Long id) {
+    public ResponseEntity<?> getCategoryById(@PathVariable Long id) {
         try {
             CategoryDto category = productCategoryService.getCategoryById(id);
-
-            if (category != null)
-                return new ResponseEntity<>(category, HttpStatus.FOUND);
-            else
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(category, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            ResponseMessageDto res = new ResponseMessageDto(e.getMessage(), false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -130,24 +128,24 @@ public class ProductCategoryController {
     public ResponseEntity<ResponseMessageDto> deleteCategoryById(@PathVariable Long id) {
         try {
             productCategoryService.deleteCategoryById(id);
-            ResponseMessageDto response = new ResponseMessageDto("Delete category successfully", true);
-            return new ResponseEntity<>(response, HttpStatus.OK);
+            ResponseMessageDto res = new ResponseMessageDto("Delete category successfully", true);
+            return new ResponseEntity<>(res, HttpStatus.OK);
         } catch (Exception e) {
-            ResponseMessageDto response = new ResponseMessageDto("Delete place type failed: " + e.getMessage(), false);
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            ResponseMessageDto res = new ResponseMessageDto(e.getMessage(), false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
         }
     }
 
     @PostMapping("/category/updateById/{id}")
-    public ResponseEntity<CategoryDto> updateById(@PathVariable Long id,
+    public ResponseEntity<ResponseMessageDto> updateById(@PathVariable Long id,
             @RequestBody CategoryDto categoryDto) {
         try {
             productCategoryService.updateCategoryById(id, categoryDto);
-            categoryDto.setId(id);
-            return new ResponseEntity<>(categoryDto, HttpStatus.CREATED);
+            ResponseMessageDto res = new ResponseMessageDto("Update category successfully", true);
+            return new ResponseEntity<>(res, HttpStatus.CREATED);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            ResponseMessageDto res = new ResponseMessageDto(e.getMessage(), false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
         }
     }
 }
