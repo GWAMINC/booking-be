@@ -1,12 +1,12 @@
 package com.GWAMINC.booking_be.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -43,7 +43,7 @@ public class ProductCategoryServiceTest {
 
         CategoryDto savedCategory = productCategoryService.createCategory(categoryDto);
 
-        Assertions.assertThat(savedCategory).isNotNull();
+        assertThat(savedCategory).isNotNull();
     }
 
     @Test
@@ -52,7 +52,7 @@ public class ProductCategoryServiceTest {
 
         CategoryDto categoryDto1 = productCategoryService.getCategoryById(category.getId());
 
-        Assertions.assertThat(categoryDto1).isNotNull();
+        assertThat(categoryDto1).isNotNull();
     }
 
     @Test
@@ -69,6 +69,6 @@ public class ProductCategoryServiceTest {
 
         CategoryDto updateReturn = productCategoryService.updateCategoryById(category.getId(), categoryDto);
 
-        Assertions.assertThat(updateReturn).isNotNull();
+        assertThat(updateReturn).isNotNull();
     }
 }
