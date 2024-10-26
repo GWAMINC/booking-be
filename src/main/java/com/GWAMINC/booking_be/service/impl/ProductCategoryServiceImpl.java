@@ -96,13 +96,13 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     }
 
     @Override
-    public void updateCategoryById(Long id, CategoryDto categoryDto) {
+    public CategoryDto updateCategoryById(Long id, CategoryDto categoryDto) {
         Category oldCategory = categoryRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Place type with id [%d] not found".formatted(id)));
 
         Category newCategory = CategoryMapper.mapToEntity(categoryDto);
         newCategory.setId(oldCategory.getId());
 
-        categoryRepository.save(newCategory);
+        return CategoryMapper.mapToDto(categoryRepository.save(newCategory));
     }
 }
