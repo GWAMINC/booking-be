@@ -25,38 +25,35 @@ public class PlaceTypeController {
     private PlaceTypeService placeTypeService;
 
     @PostMapping("/create")
-    public ResponseEntity<ResponseMessageDto> createPlaceType(@RequestBody PlaceTypeDto placeTypeDto) {
+    public ResponseEntity<?> createPlaceType(@RequestBody PlaceTypeDto placeTypeDto) {
         try {
             PlaceTypeDto savedPlaceType = placeTypeService.createPlaceType(placeTypeDto);
-            ResponseMessageDto response = new ResponseMessageDto("Create place type success", true);
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
+            return new ResponseEntity<>(savedPlaceType, HttpStatus.CREATED);
         } catch (Exception e) {
-            ResponseMessageDto response = new ResponseMessageDto("Create place type failed: " + e.getMessage(), false);
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            ResponseMessageDto res = new ResponseMessageDto(e.getMessage(), false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<PlaceTypeDto>> getAllPlaceTypes() {
+    public ResponseEntity<?> getAllPlaceTypes() {
         try {
             List<PlaceTypeDto> placeTypeDtos = placeTypeService.getAllPlaceTypes();
             return new ResponseEntity<>(placeTypeDtos, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            ResponseMessageDto res = new ResponseMessageDto(e.getMessage(), false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<PlaceTypeDto> getPlaceTypeById(@PathVariable Long id) {
+    public ResponseEntity<?> getPlaceTypeById(@PathVariable Long id) {
         try {
             PlaceTypeDto placeType = placeTypeService.getPlaceTypeById(id);
-
-            if (placeType != null)
-                return new ResponseEntity<>(placeType, HttpStatus.FOUND);
-            else
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(placeType, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            ResponseMessageDto res = new ResponseMessageDto(e.getMessage(), false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -64,11 +61,11 @@ public class PlaceTypeController {
     public ResponseEntity<ResponseMessageDto> deletePlaceTypeById(@PathVariable Long id) {
         try {
             placeTypeService.deletePlaceTypeById(id);
-            ResponseMessageDto response = new ResponseMessageDto("Delete placeType successfully", true);
-            return new ResponseEntity<>(response, HttpStatus.OK);
+            ResponseMessageDto res = new ResponseMessageDto("Delete place type successfully", true);
+            return new ResponseEntity<>(res, HttpStatus.OK);
         } catch (Exception e) {
-            ResponseMessageDto response = new ResponseMessageDto("Delete place type failed: " + e.getMessage(), false);
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            ResponseMessageDto res = new ResponseMessageDto(e.getMessage(), false);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -77,11 +74,11 @@ public class PlaceTypeController {
             @RequestBody PlaceTypeDto placeTypeDto) {
         try {
             placeTypeService.updatePlaceTypeById(id, placeTypeDto);
-            ResponseMessageDto response = new ResponseMessageDto("Update placeType successfully", true);
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
+            ResponseMessageDto res = new ResponseMessageDto("Update place type successfully", true);
+            return new ResponseEntity<>(res, HttpStatus.CREATED);
         } catch (Exception e) {
-            ResponseMessageDto response = new ResponseMessageDto("Update place type failed: " + e.getMessage(), false);
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            ResponseMessageDto res = new ResponseMessageDto(e.getMessage(), true);
+            return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
         }
     }
 }
