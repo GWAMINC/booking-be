@@ -13,5 +13,5 @@ public interface PlaceTypeService {
 
     void deletePlaceTypeById(Long id);
 
-    void updatePlaceTypeById(Long id, PlaceTypeDto placeTypeDto);
+    PlaceTypeDto updatePlaceTypeById(Long id, PlaceTypeDto placeTypeDto);
 }

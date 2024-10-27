@@ -52,7 +52,7 @@ public class PlaceTypeServiceImpl implements PlaceTypeService {
     };
 
     @Override
-    public void updatePlaceTypeById(Long id, PlaceTypeDto placeTypeDto) {
+    public PlaceTypeDto updatePlaceTypeById(Long id, PlaceTypeDto placeTypeDto) {
         PlaceType oldPlaceType = placeTypeRepository
                 .findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("PlaceType with id [%d] not found".formatted(id)));
@@ -60,6 +60,6 @@ public class PlaceTypeServiceImpl implements PlaceTypeService {
         PlaceType newPlaceType = PlaceTypeMapper.mapToEntity(placeTypeDto);
         newPlaceType.setId(oldPlaceType.getId());
 
-        placeTypeRepository.save(newPlaceType);
+        return PlaceTypeMapper.mapToDto(placeTypeRepository.save(newPlaceType));
     }
 }
