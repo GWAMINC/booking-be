@@ -21,7 +21,8 @@ public class PropertyTypeController {
     private PropertyService propertyTypeService;
 
     @PostMapping("/create")
-    public ResponseEntity<ResponseMessageDto> createPropertyType(@RequestBody PropertyTypeDto propertyTypeDto) {
+    public ResponseEntity<ResponseMessageDto> createPropertyType(
+            @RequestBody PropertyTypeDto propertyTypeDto) {
         try{
             PropertyTypeDto savedPropertyType = propertyTypeService.createPropertyType(propertyTypeDto);
             ResponseMessageDto response = new ResponseMessageDto("Create propertyType success",true);
