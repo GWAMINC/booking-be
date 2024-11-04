@@ -1,7 +1,6 @@
 package com.GWAMINC.booking_be.service;
 
 import com.GWAMINC.booking_be.dto.BookingGuestsDto;
-
 import java.util.List;
 
 public interface BookingGuestsService {
