@@ -10,6 +10,7 @@ public class UserReviewMapper {
         return UserReview.builder()
                 .comment(create.getComment())
                 .overallRating(create.getOverallRating())
+                .reviewDate(create.getReviewDate())
                 .build();
     }
 

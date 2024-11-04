@@ -24,7 +24,7 @@ public class UserReviewController {
         return ResponseEntity.ok(userReviewService.getUserReviewById(id));
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<UserReviewResponse> createUserReview(
             @RequestBody UserReviewCreate userReviewCreate
     ) {
@@ -47,7 +47,7 @@ public class UserReviewController {
         return ResponseEntity.ok("Delete successfully");
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<List<UserReviewResponse>> getUserReviews() {
         return ResponseEntity.ok(userReviewService.listUserReviews());
     }
