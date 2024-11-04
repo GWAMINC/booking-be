@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @Builder
 public class UserReviewCreate {
@@ -11,4 +13,5 @@ public class UserReviewCreate {
     private Integer overallRating;
     private Long propertyId;
     private Long userId;
+    private Date reviewDate;
 }

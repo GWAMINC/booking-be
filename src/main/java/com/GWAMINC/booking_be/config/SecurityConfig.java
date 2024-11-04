@@ -13,7 +13,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-
             .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
                         .requestMatchers("/api/region/create").permitAll()
@@ -81,7 +80,9 @@ public class SecurityConfig {
                         .requestMatchers("/api/propertytype/updateById/{id}").permitAll()
                         .requestMatchers("/api/propertytype/deleteById/{id}").permitAll()
                         .requestMatchers("api/propertytype/getAll").permitAll()
-                    .anyRequest().authenticated()
+
+                        .requestMatchers("/api/user-review", "/api/user-review/**").permitAll()
+                        .anyRequest().authenticated()
             )
             .csrf(AbstractHttpConfigurer::disable);
 
