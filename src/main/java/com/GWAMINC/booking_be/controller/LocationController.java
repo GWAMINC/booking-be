@@ -1,5 +1,6 @@
 package com.GWAMINC.booking_be.controller;
 
+import com.GWAMINC.booking_be.dto.CountryDto;
 import com.GWAMINC.booking_be.service.LocationService;
 import com.GWAMINC.booking_be.dto.LocationDto;
 import com.GWAMINC.booking_be.dto.ResponseMessageDto;
@@ -19,14 +20,13 @@ public class LocationController {
     private LocationService locationService;
 
     @PostMapping("/create")
-    public ResponseEntity<ResponseMessageDto> createLocation(@RequestBody LocationDto locationDto) {
+    public ResponseEntity<LocationDto> createLocation(@RequestBody LocationDto locationDto) {
         try {
             LocationDto savedLocation = locationService.createLocation(locationDto);
-            ResponseMessageDto response = new ResponseMessageDto("Create location success", true);
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
+            return new ResponseEntity<>(savedLocation, HttpStatus.CREATED);
         } catch (Exception e) {
             ResponseMessageDto response = new ResponseMessageDto("Create location failed: " + e.getMessage(), false);
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
         }
     }
 
