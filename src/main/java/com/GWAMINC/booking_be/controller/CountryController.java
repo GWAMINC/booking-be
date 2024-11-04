@@ -26,16 +26,16 @@ public class CountryController {
     private CountryService countryService;
 
     @PostMapping("/create")
-    public ResponseEntity<ResponseMessageDto> createCountry(@RequestBody CountryDto countryDto) {
+    public ResponseEntity<CountryDto> createCountry(@RequestBody CountryDto countryDto) {
         try {
             CountryDto savedCountry = countryService.createCountry(countryDto);
-            ResponseMessageDto response = new ResponseMessageDto("Create country success", true);
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
+            return new ResponseEntity<>(savedCountry, HttpStatus.CREATED);
         } catch (Exception e) {
             ResponseMessageDto response = new ResponseMessageDto("Create country failed: " + e.getMessage(), false);
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
         }
     }
+
 
     @GetMapping("/getAll")
     public ResponseEntity<List<CountryDto>> getAllCountries() {
