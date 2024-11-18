@@ -40,6 +40,14 @@ public class CountryServiceImpl implements CountryService{
     }
 
     @Override
+    public List<CountryDto> getCountriesByRegionId(Long regionId) {
+        return countryRepository.findByRegionId(regionId)
+                .stream()
+                .map(CountryMapper::mapToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void deleteCountryById(Long id){
         countryRepository.deleteById(id);
     }

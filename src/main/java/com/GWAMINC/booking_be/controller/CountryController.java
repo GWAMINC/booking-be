@@ -61,6 +61,16 @@ public class CountryController {
         }
     }
 
+    @GetMapping("/getByRegionId/{regionId}")
+    public ResponseEntity<List<CountryDto>> getCountriesByRegionId(@PathVariable Long regionId) {
+        try {
+            List<CountryDto> countries = countryService.getCountriesByRegionId(regionId);
+            return new ResponseEntity<>(countries, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @PostMapping("/updateById/{id}")
     public ResponseEntity<ResponseMessageDto> updateCountryById(@PathVariable Long id, @RequestBody CountryDto countryDto) {
         try {

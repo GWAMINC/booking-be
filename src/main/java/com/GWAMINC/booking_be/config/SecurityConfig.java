@@ -42,12 +42,14 @@ public class SecurityConfig {
                         .requestMatchers("/api/country/create").permitAll()
                         .requestMatchers("/api/country/getAll").permitAll()
                         .requestMatchers("/api/country/getById/{id}").permitAll()
+                        .requestMatchers("/api/country/getByRegionId/{regionId}").permitAll()
                         .requestMatchers("/api/country/deleteById/{id}").permitAll()
                         .requestMatchers("/api/country/updateById/{id}").permitAll()
 
                         .requestMatchers("/api/location/create").permitAll()
                         .requestMatchers("/api/location/getAll").permitAll()
                         .requestMatchers("/api/location/getById/{id}").permitAll()
+                        .requestMatchers("/api/location/getByCountryId/{countryId}").permitAll()
                         .requestMatchers("/api/location/deleteById/{id}").permitAll()
                         .requestMatchers("/api/location/updateById/{id}").permitAll()
 
