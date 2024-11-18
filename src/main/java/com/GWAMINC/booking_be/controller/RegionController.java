@@ -16,14 +16,14 @@ public class RegionController {
     private RegionService regionService;
 
     @PostMapping("/create")
-    public ResponseEntity<ResponseMessageDto> createRegion(@RequestBody RegionDto regionDto) {
+    public ResponseEntity<RegionDto> createRegion(@RequestBody RegionDto regionDto) {
         try {
             RegionDto savedRegion = regionService.createRegion(regionDto);
             ResponseMessageDto response = new ResponseMessageDto("Create region success", true);
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
+            return new ResponseEntity<>(savedRegion, HttpStatus.CREATED);
         } catch (Exception e) {
             ResponseMessageDto response = new ResponseMessageDto("Create region failed: " + e.getMessage(), false);
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
         }
     }
 

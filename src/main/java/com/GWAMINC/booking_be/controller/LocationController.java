@@ -53,6 +53,16 @@ public class LocationController {
         }
     }
 
+    @GetMapping("/getByCountryId/{countryId}")
+    public ResponseEntity<List<LocationDto>> getLocationsByCountryId(@PathVariable Long countryId) {
+        try {
+            List<LocationDto> locations = locationService.getLocationsByCountryId(countryId);
+            return new ResponseEntity<>(locations, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @PostMapping("/updateById/{id}")
     public ResponseEntity<ResponseMessageDto> updateLocationById(@PathVariable Long id, @RequestBody LocationDto locationDto) {
         try {

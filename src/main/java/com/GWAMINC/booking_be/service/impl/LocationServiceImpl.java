@@ -40,6 +40,14 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
+    public List<LocationDto> getLocationsByCountryId(Long countryId) {
+        return locationRepository.findByCountryId(countryId)
+                .stream()
+                .map(LocationMapper::mapToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void deleteLocationById(Long id) {
         locationRepository.deleteById(id);
     }

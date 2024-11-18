@@ -6,6 +6,7 @@ public interface CountryService {
     CountryDto createCountry(CountryDto countryDto);
     CountryDto getCountryById(Long id);
     List<CountryDto> getAllCountries();
+    List<CountryDto> getCountriesByRegionId(Long regionId);
     CountryDto updateCountryById(Long id, CountryDto countryDto);
     void deleteCountryById(Long id);
 }
