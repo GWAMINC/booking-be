@@ -40,17 +40,15 @@ public class UserReviewController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteUserReview(
-            @PathVariable long id
-    ) {
+    public ResponseEntity<Void> deleteUserReview(@PathVariable long id) {
         userReviewService.deleteUserReview(id);
-        return ResponseEntity.ok("Delete successfully");
+        return ResponseEntity.ok().build(); // Trả về mã 200 OK mà không có nội dung
     }
+
 
     @GetMapping("")
     public ResponseEntity<List<UserReviewResponse>> getUserReviews() {
         return ResponseEntity.ok(userReviewService.listUserReviews());
     }
-
 
 }
